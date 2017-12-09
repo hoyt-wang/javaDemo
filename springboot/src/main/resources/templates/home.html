@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    <!--超链接-->
+    <!--/user?id=1001-->
+    <a th:href="@{/user(id=${user.id})}" th:text="${user.name}"></a>
+    <hr>
+    <!--/user/1001/show-->
+    <a th:href="@{/user/{userId}/show(userId=${user.id})}" th:text="${user.name}"></a>
+    <hr>
+
+    <!--HTMLZ属性-->
+    <span th:attr="data-id=${user.id}"></span>
+    <span th:attr="data-id=${user.id},data-name=${user.name},data-address=${user.address}"></span>
+    <hr>
+
+    <!--表单值-->
+    <input type="text" th:value="${user.name}">
+    <hr>
+
+    <!--循环-->
+    <ul>
+        <li th:each="name ,iterstat : ${nameList}" th:text="${iterstat.count + '-->' + iterstat.index + '-->' + name}"
+        th:class="iterstat.odd ? 'odd' : 'even'"></li>
+    </ul>
+
+    <hr>
+    <!--条件判断-->
+    <h3 th:if="${user.name == 'jack'}">hello,jack</h3>
+    <h3 th:unless="${user.name == 'jack'}">hello.sir</h3>
+    <ul th:switch="${user.name}">
+        <li th:case="rose">rose</li>
+        <li th:case="jack">jack</li>
+        <li th:case="*">other</li>
+    </ul>
+    <hr>
+
+    <!--获取值-->
+    <h3 th:text="${message}">spring boot version 01</h3>
+    <h3 th:text="${user.name}"></h3>
+    <h3 th:text="${user.address}"></h3>
+    <h3 th:text="${param.q}"></h3>
+    <h3 th:text="${session.msg}"></h3>
+    <hr>
+
+    <h3>hello,Audi</h3>
+    <!-- 静态页面 前后端都支持-->
+    <img th:src="@{'/image/audi.jpg'}" src="../static/image/audi.jpg">
+
+    <!--javascript应用-->
+    <script th:inline="javascript">
+        [# th:if="${user.name != null}"]
+        var userId = [[${user.id}]]
+        var userName=[[${user.name}]]
+        [/]
+    </script>
+
+
+</body>
+</html>

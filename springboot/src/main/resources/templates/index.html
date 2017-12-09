@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+    <div layout:fragment="context">
+        <h3>hello,layout</h3>
+        <ul>
+            <li th:each="product : ${productList}" th:text="${product.productName}"></li>
+        </ul>
+    </div>
+</body>
+</html>
