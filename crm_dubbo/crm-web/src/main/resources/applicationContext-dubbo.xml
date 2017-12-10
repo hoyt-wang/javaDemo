@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo  http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="CrmServiceConsumer"/>
+    <dubbo:registry address="zookeeper://192.168.0.29:2181"/>
+
+    <!--check=false  可以在提供者着没启动的时候 开启消费者，一般在开发中使用-->
+    <!--在check 没写false的时候，url="dubbo://192.168.0.29" 两人协同开发的时候 排除zookeeper的原因-->
+    <dubbo:reference interface="com.kaishengit.crm.service.AccountService" id="accountService"/>
+    <dubbo:reference interface="com.kaishengit.crm.service.TaskService" id="taskService"/>
+    <dubbo:reference interface="com.kaishengit.crm.service.SaleChanceService" id="saleChanceService"/>
+    <dubbo:reference interface="com.kaishengit.crm.service.DiskService" id="diskService"/>
+    <dubbo:reference interface="com.kaishengit.crm.service.CustomerService" id="customerService"/>
+</beans>

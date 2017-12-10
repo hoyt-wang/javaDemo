@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <dubbo:application name="CrmServiceProvider"/>
+
+    <dubbo:protocol name="dubbo" host="192.168.0.29" port="20880"/>
+    <dubbo:registry address="zookeeper://192.168.0.29:2181"/>
+
+    <dubbo:service interface="com.kaishengit.crm.service.AccountService" ref="accountServiceImpl"/>
+    <dubbo:service interface="com.kaishengit.crm.service.TaskService" ref="taskServiceImpl"/>
+    <dubbo:service interface="com.kaishengit.crm.service.CustomerService" ref="customerServiceImpl"/>
+    <dubbo:service interface="com.kaishengit.crm.service.DiskService" ref="diskServiceImpl"/>
+    <dubbo:service interface="com.kaishengit.crm.service.SaleChanceService" ref="saleChanceServiceImpl"/>
+    <dubbo:service interface="com.kaishengit.crm.files.FileStore" ref="qiniuFileStore"/>
+
+</beans>
